@@ -26,7 +26,8 @@ module ActiveModelSerializers
           end
         end
 
-        found_class && (found_class.new *args)
+        found_class ||= ActiveModel::DefaultSerializer
+        found_class.new *args
       end
 
     end
