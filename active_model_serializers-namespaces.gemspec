@@ -8,9 +8,11 @@ Gem::Specification.new do |spec|
   spec.version       = ActiveModelSerializers::Namespaces::VERSION
   spec.authors       = ["Sebastian Skałacki"]
   spec.email         = ["skalee@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Easy namespaces for ActiveModel::Serializers gem.}
+  spec.description   = %q{Enhances ActiveModel::Serializers gem by adding } +
+                       %q{support for versioned serializers.  Works with } +
+                       %q{ActiveModel::Serializers 0.8.x series.}
+  spec.homepage      = "https://github.com/skalee/active_model_serializers-namespaces"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
