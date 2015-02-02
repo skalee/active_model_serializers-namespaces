@@ -3,7 +3,7 @@ require "application_fake"
 require "rspec/rails"
 
 require "active_model_serializers"
-# require "active_model_serializers/namespaces"
+require "active_model_serializers/namespaces"
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

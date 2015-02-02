@@ -65,14 +65,12 @@ describe "When serializing objects in controller's #render method,", type: :cont
   end
 
   it "searches for serializer in the specified namespace and uses it if found" do
-    pending "Expected to fail until namespaced serializers are required"
     options.merge! serialization_namespace: Version1
     get :show
     expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Version 1")
   end
 
   it "uses a default serializer when none found in the specified namespace" do
-    pending "Expected to fail until namespaced serializers are required"
     options.merge! serialization_namespace: Version2
     get :show
     expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Skipping AMS")
