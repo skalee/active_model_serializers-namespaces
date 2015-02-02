@@ -1,3 +1,5 @@
+require "application_fake"
+
 require "rspec/rails"
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
