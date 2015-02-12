@@ -26,8 +26,21 @@ module ActiveModelSerializers
           end
         end
 
-        found_class ||= ActiveModel::DefaultSerializer
+        found_class ||= ActiveModelSerializers::Namespaces::DefaultSerializer
         found_class.new *args
+      end
+
+    end
+
+
+    class DefaultSerializer < ActiveModel::DefaultSerializer
+
+      def to_json *args
+        serializable_hash.to_json *args
+      end
+
+      def to_xml *args
+        serializable_hash.to_xml *args
       end
 
     end
