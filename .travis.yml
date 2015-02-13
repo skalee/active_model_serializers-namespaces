@@ -11,10 +11,23 @@ rvm:
   - ruby-head
   - jruby-head
 
+gemfile:
+  - gemfiles/Rails-4.2.gemfile
+
 matrix:
   include:
     - rvm: "2.2"
+      gemfile: gemfiles/Rails-4.2.gemfile
       env: RUN_COVERALLS=true
+
+    - rvm: "2.2"
+      gemfile: gemfiles/Rails-4.1.gemfile
+
+    - rvm: "2.2"
+      gemfile: gemfiles/Rails-4.0.gemfile
+
+    - rvm: "1.9.3"
+      gemfile: gemfiles/Rails-3.2.gemfile
 
   allow_failures:
     - rvm: ruby-head
