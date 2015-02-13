@@ -30,3 +30,9 @@ RSpec.configure do |config|
   # config.warnings = true
 
 end
+
+
+if ENV["RUN_COVERALLS"]
+  require "coveralls"
+  Coveralls.wear!
+end
