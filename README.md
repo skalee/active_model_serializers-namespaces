@@ -1,5 +1,11 @@
 # ActiveModelSerializer::Namespaces
 
+![Version](https://img.shields.io/gem/v/active_model_serializer-namespaces.svg)
+![Issues](https://img.shields.io/github/issues-raw/skalee/active_model_serializers-namespaces.svg)
+![Build](https://img.shields.io/travis/skalee/active_model_serializers-namespaces.svg)
+![Climate](https://img.shields.io/codeclimate/github/skalee/active_model_serializers-namespaces.svg)
+![Coverage](https://img.shields.io/coveralls/skalee/active_model_serializers-namespaces.svg)
+
 TODO: Write a gem description
 
 ## Installation
