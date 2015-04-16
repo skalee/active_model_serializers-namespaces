@@ -1,10 +1,10 @@
 # ActiveModelSerializer::Namespaces
 
-![Version](https://img.shields.io/gem/v/active_model_serializer-namespaces.svg)
-![Issues](https://img.shields.io/github/issues-raw/skalee/active_model_serializers-namespaces.svg)
-![Build](https://img.shields.io/travis/skalee/active_model_serializers-namespaces.svg)
-![Climate](https://img.shields.io/codeclimate/github/skalee/active_model_serializers-namespaces.svg)
-![Coverage](https://img.shields.io/coveralls/skalee/active_model_serializers-namespaces.svg)
+[![Version][badge-version]][about-version]
+[![Issues][badge-issues]][about-issues]
+[![Build][badge-travis]][about-travis]
+[![Climate][badge-climate]][about-climate]
+[![Coverage][badge-coverage]][about-coverage]
 
 TODO: Write a gem description
 
@@ -35,3 +35,14 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+[about-climate]: https://codeclimate.com/github/skalee/active_model_serializers-namespaces
+[about-coverage]: https://coveralls.io/r/skalee/active_model_serializers-namespaces
+[about-issues]: https://github.com/skalee/active_model_serializers-namespaces/issues
+[about-travis]: https://travis-ci.org/skalee/active_model_serializers-namespaces
+[about-version]: https://rubygems.org/
+[badge-climate]: https://img.shields.io/codeclimate/github/skalee/active_model_serializers-namespaces.svg
+[badge-coverage]: https://img.shields.io/coveralls/skalee/active_model_serializers-namespaces.svg
+[badge-issues]: https://img.shields.io/github/issues-raw/skalee/active_model_serializers-namespaces.svg
+[badge-travis]: https://img.shields.io/travis/skalee/active_model_serializers-namespaces.svg
+[badge-version]: https://img.shields.io/gem/v/active_model_serializer-namespaces.svg
