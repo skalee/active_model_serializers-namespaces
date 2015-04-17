@@ -3,13 +3,14 @@ require "spec_helper"
 describe "When serializing objects in controller's #render method,", type: :controller do
 
   class Model
+    include ActiveModel::Serializers::JSON
     include ActiveModel::SerializerSupport
 
     def name
       "I'm a PORO model!"
     end
 
-    def as_json options = {}
+    def serializable_hash options = {}
       {name: name, serialized_by: "Skipping AMS"}
     end
   end
