@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "When serializing objects in controller's #render method,", type: :controller do
+describe "When serializing objects in controller's #render method", type: :controller do
 
   class Model
     include ActiveModel::Serializers::JSON
@@ -60,27 +60,37 @@ describe "When serializing objects in controller's #render method,", type: :cont
   let(:options){ {root: false} }
 
 
-  it "searches for serializer in the root namespace when serialization namespace is not specified" do
-    get :show
-    expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Unscoped")
+  context "and when :serialization_namespace is unspecified" do
+    it "searches for serializer in the root namespace" do
+      get :show
+      expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Unscoped")
+    end
+
+    it "always uses serializer specified with :serializer when such option is present" do
+      options.merge! serializer: ::ModelSerializer
+      get :show
+      expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Unscoped")
+    end
   end
 
-  it "searches for serializer in the specified namespace and uses it if found" do
-    options.merge! serialization_namespace: Version1
-    get :show
-    expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Version 1")
-  end
+  context "and when :serialization_namespace is specified" do
+    it "searches for serializer in that namespace and uses it when found" do
+      options.merge! serialization_namespace: Version1
+      get :show
+      expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Version 1")
+    end
 
-  it "uses a default serializer when none found in the specified namespace" do
-    options.merge! serialization_namespace: Version2
-    get :show
-    expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Skipping AMS")
-  end
+    it "searches for serializer in that namespace and uses a default serializer when not found" do
+      options.merge! serialization_namespace: Version2
+      get :show
+      expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Skipping AMS")
+    end
 
-  it "always uses serializer specified with :serializer option when such option is present" do
-    options.merge! serialization_namespace: Version1, serializer: ::ModelSerializer
-    get :show
-    expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Unscoped")
+    it "always uses serializer specified with :serializer when such option is present" do
+      options.merge! serialization_namespace: Version1, serializer: ::ModelSerializer
+      get :show
+      expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Unscoped")
+    end
   end
 
 end
