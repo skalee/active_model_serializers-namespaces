@@ -15,7 +15,24 @@ describe "When serializing objects in controller's #render method", type: :contr
     end
   end
 
+  class AnotherModel
+    include ActiveModel::Serializers::JSON
+    include ActiveModel::SerializerSupport
+
+    def name
+      "Yet another PORO model!"
+    end
+  end
+
   class ModelSerializer < ActiveModel::Serializer
+    attributes :name, :serialized_by
+
+    def serialized_by
+      "Unscoped"
+    end
+  end
+
+  class AnotherModelSerializer < ActiveModel::Serializer
     attributes :name, :serialized_by
 
     def serialized_by
@@ -25,6 +42,14 @@ describe "When serializing objects in controller's #render method", type: :contr
 
   module Version1
     class Version1::ModelSerializer < ActiveModel::Serializer
+      attributes :name, :serialized_by
+
+      def serialized_by
+        "Version 1"
+      end
+    end
+
+    class Version1::AnotherModelSerializer < ActiveModel::Serializer
       attributes :name, :serialized_by
 
       def serialized_by
@@ -43,6 +68,10 @@ describe "When serializing objects in controller's #render method", type: :contr
 
     def show
       render json: Model.new
+    end
+
+    def index
+      render json: [Model.new, AnotherModel.new]
     end
   end
 
@@ -71,6 +100,14 @@ describe "When serializing objects in controller's #render method", type: :contr
       get :show
       expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Unscoped")
     end
+
+    it "searches for serializer in the root namespace for every object in collection" do
+      get :index
+      expect(serialization_result).to eq([
+        {name: "I'm a PORO model!", serialized_by: "Unscoped"},
+        {name: "Yet another PORO model!", serialized_by: "Unscoped"},
+      ])
+    end
   end
 
   context "and when :serialization_namespace is specified" do
@@ -90,6 +127,15 @@ describe "When serializing objects in controller's #render method", type: :contr
       options.merge! serialization_namespace: Version1, serializer: ::ModelSerializer
       get :show
       expect(serialization_result).to eq(name: "I'm a PORO model!", serialized_by: "Unscoped")
+    end
+
+    it "searches for serializer in that namespace for every object in collection" do
+      options.merge! serialization_namespace: Version1
+      get :index
+      expect(serialization_result).to eq([
+        {name: "I'm a PORO model!", serialized_by: "Version 1"},
+        {name: "Yet another PORO model!", serialized_by: "Version 1"},
+      ])
     end
   end
 
