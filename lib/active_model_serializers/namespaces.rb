@@ -4,8 +4,8 @@ module ActiveModelSerializers
   module Namespaces
     class NamespacedSerializerFinder
 
-      def initialize model_class
-        @unscoped_name = "#{model_class.name}Serializer"
+      def initialize unscoped_name
+        @unscoped_name = unscoped_name
       end
 
       def new *args
@@ -56,7 +56,7 @@ module ActiveModel
 
       def active_model_serializer
         @namespaced_serializer_finder ||=
-          ActiveModelSerializers::Namespaces::NamespacedSerializerFinder.new(self)
+          ActiveModelSerializers::Namespaces::NamespacedSerializerFinder.new("#{self.name}Serializer")
       end
 
     end
