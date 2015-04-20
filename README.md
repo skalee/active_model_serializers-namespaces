@@ -111,7 +111,7 @@ Fork it, improve it then create a pull request.  You know the drill.
 [about-coverage]: https://coveralls.io/r/skalee/active_model_serializers-namespaces
 [about-issues]: https://github.com/skalee/active_model_serializers-namespaces/issues
 [about-travis]: https://travis-ci.org/skalee/active_model_serializers-namespaces
-[about-version]: https://rubygems.org/
+[about-version]: https://rubygems.org/gems/active_model_serializer-namespaces
 [badge-climate]: https://img.shields.io/codeclimate/github/skalee/active_model_serializers-namespaces.svg
 [badge-coverage]: https://img.shields.io/coveralls/skalee/active_model_serializers-namespaces.svg
 [badge-issues]: https://img.shields.io/github/issues-raw/skalee/active_model_serializers-namespaces.svg
