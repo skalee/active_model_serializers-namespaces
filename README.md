@@ -17,12 +17,12 @@ in Active Model Serializers.
 Short answer: when you need more than one way to serialize your models and
 you want to organize that in namespaces.
 
-For example, your application is serving a versioned API.  You want to
-freeze the old API formats and actively develop upcoming version.
+One example is that your application is serving a versioned API.  You want to
+freeze the old APIs and actively develop upcoming version.
 
-For example, your application is utilizing few 3rd-party services which expect
-JSONs as input, so you need to convert your models somehow, preferably avoiding
-mixing these integrations.
+Another example is that your application is utilizing few 3rd-party services
+which expect JSONs as input, so you need to convert your models somehow,
+preferably avoiding mixing different representations for various integrations.
 
 In all these cases the most natural approach is to define a separate set of
 serializers for every API version or integration.  But then you discover that
@@ -30,12 +30,13 @@ you need to pass serializer name every time you use it.  Even `#has_many`
 declarations in serializers require that.  And what will you do to serialize
 a collection of objects of different classes?
 
-With ActiveModelSerializer-Namespaces you can nest your serializers in modules
+With ActiveModelSerializer-Namespaces, you can nest your serializers in modules
 with no pain.  Just pass namespace of your choice and it will be used throughout
 complex models and collections.  What's more, you don't need to type it in
-actions, just specify it as default for the whole API version.
+every controller action, it's enough to specify it as default in a base
+controller or mixin module once for the whole API version.
 
-Creating brand new API version is again as easy as copying code to new location.
+Creating new API version is as easy as copying code to new location.
 
 ## How do I use it?
 
@@ -67,21 +68,21 @@ Or set it as a default option in controller:
 
 See [`spec/features_spec.rb`][spec-features] for more detailed examples.
 
-## How does it works (caveats)?
+## How does it work (caveats)?
 
 The trick is to delay inferring serializer class until `#new` is called and
-options hash is available.
+the options hash is available.
 
-To achieve that, `::active_model_serializer` is defined for all models, however
-it returns a finder proxy object instead of serializer class.  The finder
-instance performs lookup for serializer class and instantiates the serializer
-in the response to `#new` call, therefore it's transparent for
-Active Model Serializer internals.
+To achieve that, `::active_model_serializer` is defined for all models which
+returns a finder proxy object instead of serializer class.  The finder instance
+responds to `#new` call as would the real class, but it performs a lookup for
+correct serializer class before instantiating a serializer object.  This way
+it's fully transparent for Active Model Serializer internals.
 
 As a consequence, overriding `#active_model_serializer`
 or `::active_model_serializer` disables this gem for given model.
 
-## Why it is a separate gem?
+## Why is it a separate gem?
 
 I did want to solve one of the biggest drawbacks of Active Model Serializers
 0.8.  I didn't want to introduce backwards-incompatible changes into it's API.
