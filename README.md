@@ -8,10 +8,9 @@
 
 ## Compatibility note
 
-This gem is designed for Active Model Serializers 0.8.x only.
-
-Although newer versions of AMS are also available, currently 0.8.x is
-[most recommended for new projects][ams-maintenance].
+This gem is designed for Active Model Serializers 0.8.x only.  It won't be
+updated for 0.9 neither for 0.10 due to fundamental architecture changes
+in Active Model Serializers.
 
 ## When is it useful?
 
